@@ -29,21 +29,17 @@ class FullscreenOverlay:
             import os
             import sys
 
-            # When running as a .app bundle, assets are moved to the App bundle contents
             if getattr(sys, 'frozen', False):
-                # In a py2app bundle, resources are usually in the bundle's Contents/Resources
                 bundle_dir = Path(sys._MEIPASS if hasattr(sys, '_MEIPASS') else os.path.dirname(sys.executable))
-                img_path = bundle_dir / "assets" / "bg.png"
+                img_path = bundle_dir / "Contents" / "Resources" / "assets" / "bg.png"
             else:
-                # Development mode
                 img_path = Path(__file__).parent.parent / "assets" / "bg.png"
 
-            print(f"Searching for background image at: {img_path}")
             if img_path.exists():
                 self.bg_image = tk.PhotoImage(file=str(img_path))
                 self.bg_label = tk.Label(self.root, image=self.bg_image)
-                self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
-                print("Background image loaded successfully.")
+                # Place background image in the bottom right corner
+                self.bg_label.place(relx=1.0, rely=1.0, anchor='se')
             else:
                 print(f"Background image not found at {img_path}, using solid color.")
         except Exception as e:

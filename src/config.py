@@ -7,7 +7,7 @@ class UserConfig:
         self.config_dir = Path("~/Library/Application Support/TwentyTwentyTwenty").expanduser()
         self.config_file = self.config_dir / "config.json"
         self.defaults = {
-            "work_interval_minutes": 2,
+            "work_interval_minutes": 20,
             "break_duration_seconds": 20,
             "pre_warning_seconds": 30,
             "sound_enabled": True,

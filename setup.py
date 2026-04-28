@@ -1,7 +1,7 @@
 # setup.py for py2app
 from setuptools import setup
 
-APP = ['src/main.py']
+APP = ['src/EyeCare.py']
 # Note: py2app uses the first entry in APP to name the .app bundle if not specified otherwise
 # But we can try to force the bundle name by renaming the main script or using a different setup.
 # Actually, py2app usually names the bundle based on the main script's filename (main.py -> main.app).
@@ -9,6 +9,7 @@ APP = ['src/main.py']
 DATA_FILES = ['assets']
 OPTIONS = {
     'argv_option': False,
+    'iconfile': 'assets/bg.icns',
     'plist': {
         'CFBundleName': 'EyeCare',
         'CFBundleDisplayName': '20-20-20 Eye Care',
@@ -17,6 +18,7 @@ OPTIONS = {
         'CFBundleShortVersionString': '0.1.0',
         'NSAppleScriptEnabled': False,
         'LSUIElement': True, # This is critical for menubar apps to hide the dock icon
+        'CFBundleIconFile': 'bg.icns',
     },
     'packages': ['rumps', 'tkinter'],
 }
